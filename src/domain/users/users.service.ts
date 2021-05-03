@@ -7,6 +7,7 @@ import { UpdateUsersDTO } from './dto/update.users.dto';
 @Injectable()
 export class UsersService {
   
+  
  
 
     constructor(
@@ -32,6 +33,25 @@ export class UsersService {
     }
 
     async updateUser(id: number, updateDto: UpdateUsersDTO) {
-        return this.userRepostory.update(id, updateDto);
+        try {
+            const {
+                affected
+            } = await this.userRepostory.update(id, updateDto);
+            return  {message: affected === 1 ? '修改成功': '未修改成功'}
+        } catch (error) {
+            return {errorMsg: `${error}`}
+        }
+
+    }
+
+    async deleteUserById(id: any) {
+        try {
+            const {
+                affected
+            } = await this.userRepostory.update(id, {status: 1});
+            return  {message: affected === 1 ? '删除成功': '未删除成功'}
+        } catch (error) {
+            return {errorMsg: `${error}`}
+        }
     }
 }

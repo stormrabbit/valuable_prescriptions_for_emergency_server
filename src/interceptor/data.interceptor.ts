@@ -13,6 +13,11 @@ export class DataInterceptor implements NestInterceptor {
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> {
-    return next.handle().pipe(map((data) => ({ code: 200, data })));
+    return next.handle().pipe(map((data) => {
+      const {
+        message = '请求成功!'
+      } = data
+      return { code: 200, data: {...data, message:undefined}, message }
+    }));
   }
 }
