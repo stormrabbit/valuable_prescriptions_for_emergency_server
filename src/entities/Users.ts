@@ -8,8 +8,8 @@ export class Users {
   @Column("varchar", { name: "name", length: 30 })
   name: string;
 
-  @Column("varchar", { name: "pwd", nullable: true, length: 60 })
-  pwd: string | null;
+  @Column("varchar", { name: "password", length: 60 })
+  password: string ;
 
   @Column("tinyint", { name: "status", default: () => "'0'" })
   status: number;
