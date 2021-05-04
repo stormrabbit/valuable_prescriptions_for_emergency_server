@@ -1,6 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './domain/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthService } from './domain/auth/auth.service';
+import { AuthModule } from './domain/auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from './domain/users/users.service';
+import { UsersController } from './domain/users/users.controller';
 
 @Module({
   imports: [
@@ -15,6 +20,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     UsersModule,
+    AuthModule,
   ],
+  controllers: [UsersController],
+  providers: [],
+  exports: [],
 })
 export class AppModule {}

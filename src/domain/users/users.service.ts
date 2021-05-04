@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Users } from '../../entities/Users';
 import { CreateUserDTO } from './dto/create.users.dto';
 import { UpdateUsersDTO } from './dto/update.users.dto';
+import { makeSalt, encryptPassword} from '../../utils/cryptogram';
 @Injectable()
 export class UsersService {
   
@@ -19,17 +20,28 @@ export class UsersService {
         return await this.userRepostory.find()
     }
 
-    async retrieveUserById(id: number): Promise<Users> {
+    async retrieveUserByCondition(condition): Promise<Users> {
         return await this.userRepostory.findOne({
-            where: {
-                id
-            }
+            where: condition
         })
     }
 
-    async createUser(createDTO: CreateUserDTO) {
+
+    async registerUser(createDTO: CreateUserDTO) {
+        const existUser =await this.userRepostory.findOne({
+            where: {
+                name: createDTO.name
+            }
+        })
+        if(existUser) {
+            return {errorMsg: '用户已存在'};
+        }
         const users = this.userRepostory.create(createDTO);
-        return this.userRepostory.save(users)
+        const salt = makeSalt();
+        const codedPassword = encryptPassword(users.password, salt);
+        users.salt = salt;
+        users.password = codedPassword;
+        return await this.userRepostory.save(users)
     }
 
     async updateUser(id: number, updateDto: UpdateUsersDTO) {
