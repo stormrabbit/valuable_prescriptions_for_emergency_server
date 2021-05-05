@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './domain/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthService } from './domain/auth/auth.service';
 import { AuthModule } from './domain/auth/auth.module';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from './domain/users/users.service';
 import { UsersController } from './domain/users/users.controller';
+import { HttpModule } from './domain/http/http.module';
 
 @Module({
   imports: [
@@ -21,6 +19,7 @@ import { UsersController } from './domain/users/users.controller';
     }),
     UsersModule,
     AuthModule,
+    HttpModule,
   ],
   controllers: [UsersController],
   providers: [],

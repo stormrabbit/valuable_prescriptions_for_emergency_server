@@ -1,16 +1,19 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpService, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 import { Users } from 'src/entities/Users';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDTO } from './dto/create.users.dto';
 import { UpdateUsersDTO } from './dto/update.users.dto';
 import { UsersService } from './users.service';
 
+@ApiTags('用户')
 @Controller('users')
 export class UsersController {
     constructor(
         private usersService: UsersService,
-        private authService: AuthService
+        private authService: AuthService,
+        private httpService: HttpService
     ){}
 
     @UseGuards(AuthGuard('jwt'))
