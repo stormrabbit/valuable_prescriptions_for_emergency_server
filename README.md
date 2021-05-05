@@ -43,7 +43,8 @@ CREATE DATABASE IF NOT EXISTS gengar DEFAULT CHARSET utf8 COLLATE utf8_general_c
 - Axios 请求
 - Swagger UI 
 
-##　三　杂七杂八
+
+## 三 杂七杂八
 
 ### 1. windows 版代码运行时登陆失败的解决方式
 
