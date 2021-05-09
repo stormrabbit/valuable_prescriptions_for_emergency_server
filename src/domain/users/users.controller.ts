@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, HttpService, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpService, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { Users } from 'src/entities/Users';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDTO } from './dto/create.users.dto';
+import { QueryDTO } from './dto/query.users.dto';
 import { UpdateUsersDTO } from './dto/update.users.dto';
 import { UsersService } from './users.service';
 
@@ -18,8 +19,8 @@ export class UsersController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('list')
-    async retrieveAllUsers(): Promise<Users[]> {
-        return this.usersService.retrieveAllUser();
+    async retrieveUsersByConditions(@Query() query:QueryDTO) {
+        return this.usersService.retrieveUsersByConditions(query);
     }
 
     @UseGuards(AuthGuard('jwt'))
