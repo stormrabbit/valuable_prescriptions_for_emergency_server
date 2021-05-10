@@ -31,7 +31,7 @@ export class UsersService {
             id: 'ASC'
           },
           take,
-          skip
+          skip: skip * take,
         })
         const totalPage = Math.ceil(total/take);
         return {
