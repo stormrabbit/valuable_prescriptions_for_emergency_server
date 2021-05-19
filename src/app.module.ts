@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './domain/auth/auth.module';
 import { UsersController } from './domain/users/users.controller';
 import { HttpModule } from './domain/http/http.module';
+import { FilesModule } from './domain/files/files.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { HttpModule } from './domain/http/http.module';
     UsersModule,
     AuthModule,
     HttpModule,
+    FilesModule,
   ],
   controllers: [UsersController],
   providers: [],

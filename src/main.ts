@@ -16,12 +16,13 @@ async function bootstrap() {
   app.useGlobalInterceptors(new DataInterceptor()); // 返回值规范化
   app.useGlobalFilters(new AllExceptionFilter()); // 引入异常过滤器
 
-  const options = new DocumentBuilder().setTitle('Gengar')
-  .setDescription('Nestjs 开发基础代码')
-  .setVersion('1.0')
-  .build()
+  const options = new DocumentBuilder()
+    .setTitle('Gengar')
+    .setDescription('Nestjs 开发基础代码')
+    .setVersion('1.0')
+    .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-doc', app, document);
-  await app.listen(3000);
+  await app.listen(8902);
 }
 bootstrap();

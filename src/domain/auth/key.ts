@@ -1,3 +1,3 @@
 export const jwtKey = {
-    key: 'pocketmonster' // 秘钥
-  };
+  key: 'pocketmonster', // 秘钥
+};
