@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `files`;
+CREATE TABLE `files`(
+   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+   `file_name` VARCHAR(100) NOT NULL,
+   `file_url` VARCHAR(200) NOT NULL,
+   `status` TINYINT NOT NULL DEFAULT 0,
+   `create_date` timestamp NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

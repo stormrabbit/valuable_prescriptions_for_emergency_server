@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "buildenties": "rm -rf src/entities & npx typeorm-model-generator -h localhost -d gengar -p 3306 -u satoshi -x 150386 -e mysql -o src/entities --noConfig true --ce pascal --cp camel"
+    "buildenties": "rm -rf src/entities & npx typeorm-model-generator -h 127.0.0.1 -d gengar -p 3306 -u satoshi -x 150386 -e mysql -o src/entities --noConfig true --ce pascal --cp camel"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",

@@ -5,7 +5,8 @@ import { MulterModule } from '@nestjs/platform-express';
 import dayjs = require('dayjs');
 import { diskStorage } from 'multer';
 import * as nuid from 'nuid';
-import * as path from 'path';
+import { Files } from 'src/entities/Files';
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     MulterModule.register({
@@ -19,8 +20,10 @@ import * as path from 'path';
         },
       }),
     }),
+    TypeOrmModule.forFeature([Files]),
   ],
   controllers: [FilesController],
   providers: [FilesService],
+  exports: [TypeOrmModule.forFeature([Files])],
 })
 export class FilesModule {}

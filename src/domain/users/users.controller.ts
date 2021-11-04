@@ -28,18 +28,14 @@ export class UsersController {
     private httpService: HttpService,
   ) {}
 
-  @Get()
-  async test() {
-    return 'test';
-  }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get('info/list')
   async retrieveUsersByConditions(@Query() query: QueryDTO) {
     return this.usersService.retrieveUsersByConditions(query);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get('info/:id')
   async retrieveUserById(@Param('id') id: number): Promise<Users> {
     return this.usersService.retrieveUserByCondition({ id });
@@ -61,13 +57,13 @@ export class UsersController {
         };
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Patch('info/:id')
   async updateUserById(@Param('id') id, @Body() updateDto: UpdateUsersDTO) {
     return this.usersService.updateUser(id, updateDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Delete('info/:id')
   async deleteUserById(@Param('id') id) {
     return this.usersService.deleteUserById(id);
