@@ -18,21 +18,22 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "buildenties": "rm -rf src/entities & npx typeorm-model-generator -h 127.0.0.1 -d gengar -p 3306 -u satoshi -x 150386 -e mysql -o src/entities --noConfig true --ce pascal --cp camel"
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/jwt": "^7.2.0",
+    "@nestjs/mongoose": "^9.0.2",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/swagger": "^4.8.0",
-    "@nestjs/typeorm": "^7.1.5",
+    "class-validator": "^0.13.2",
     "crypto": "^1.0.1",
     "dayjs": "^1.10.4",
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
+    "mongoose": "^6.2.4",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "nuid": "^1.1.6",
@@ -41,10 +42,9 @@
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.5.4",
     "stacktrace-js": "^2.0.2",
-    "swagger-ui-express": "^4.1.6",
-    "typeorm": "^0.2.32"
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
@@ -52,6 +52,7 @@
     "@nestjs/testing": "^7.6.15",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^14.14.36",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
