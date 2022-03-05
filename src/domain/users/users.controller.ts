@@ -28,7 +28,6 @@ export class UsersController {
     private httpService: HttpService,
   ) {}
 
-
   // @UseGuards(AuthGuard('jwt'))
   @Get('info/list')
   async retrieveUsersByConditions(@Query() query: QueryDTO) {
