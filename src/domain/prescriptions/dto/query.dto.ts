@@ -1,4 +1,8 @@
 export class PrescriptionsQueryDto {
-  pageSize: number;
+  pageSize = 10;
   page: number;
+  prescriptionName = '';
+  disease = '';
+  symptom = '';
+  treatment = '';
 }

@@ -18,13 +18,38 @@ export class PrescriptionsService {
     return (await newPrescription).save();
   }
 
+  getCondtions(condition = '', propName = '') {
+    if (!condition) {
+      return {};
+    }
+    console.log(
+      'condition==>',
+      JSON.stringify({
+        [propName]: { $all: condition.split(' ') },
+      }),
+    );
+    return {
+      [propName]: { $all: condition.split(' ') },
+    };
+  }
   async retrieveByCondition(query: PrescriptionsQueryDto) {
     const page = query.page ?? 1;
     const pageSize = query.pageSize ?? 10;
-    const total = await this.prescriptionsModel.countDocuments({ status: 0 });
-    console.log(query);
+    // console.log(disease);
+    const _filter = {
+      $and: [
+        { status: 0 },
+        {
+          prescriptionName: { $regex: query.prescriptionName, $options: '$i' },
+        },
+        this.getCondtions(query.disease, 'disease'),
+        this.getCondtions(query.symptom, 'symptom'),
+        this.getCondtions(query.treatment, 'treatment'),
+      ],
+    };
+    const total = await this.prescriptionsModel.countDocuments(_filter);
     const prescriptions = await this.prescriptionsModel
-      .find({ status: 0 })
+      .find(_filter)
       .limit(pageSize)
       .skip((page - 1) * pageSize)
       .sort({ updateAt: -1 })
