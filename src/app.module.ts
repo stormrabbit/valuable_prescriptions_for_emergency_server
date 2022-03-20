@@ -14,7 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     FilesModule,
     PrescriptionsModule,
     MongooseModule.forRoot(
-      'mongodb://vpfe_admin:123456@127.0.0.1:27017/vpfe_db',
+      `mongodb://vpfe_admin:${process.env.PSWD}@${process.env.HOST}:${process.env.PORT}/vpfe_db`,
     ),
   ],
   controllers: [UsersController],
