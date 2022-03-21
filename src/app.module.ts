@@ -6,6 +6,7 @@ import { HttpModule } from './domain/http/http.module';
 import { FilesModule } from './domain/files/files.module';
 import { PrescriptionsModule } from './domain/prescriptions/prescriptions.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     UsersModule,
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     HttpModule,
     FilesModule,
     PrescriptionsModule,
+    ConfigModule.forRoot(),
     MongooseModule.forRoot(
       `mongodb://vpfe_admin:${process.env.PSWD}@${process.env.HOST}:${process.env.PORT}/vpfe_db`,
     ),
