@@ -22,15 +22,10 @@ export class PrescriptionsService {
     if (!condition) {
       return {};
     }
-    console.log(
-      'condition==>',
-      JSON.stringify({
-        [propName]: { $all: condition.split(' ') },
-      }),
-    );
-    return {
-      [propName]: { $all: condition.split(' ') },
+    const findCondtion = {
+      [propName]: { $regex: condition },
     };
+    return findCondtion;
   }
   async retrieveByCondition(query: PrescriptionsQueryDto) {
     const page = query.page ?? 1;

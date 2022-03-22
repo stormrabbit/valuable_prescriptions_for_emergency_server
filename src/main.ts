@@ -16,6 +16,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new DataInterceptor()); // 返回值规范化
   app.useGlobalFilters(new AllExceptionFilter()); // 引入异常过滤器
   app.enableCors(); // 允许跨域
+  app.setGlobalPrefix('api');
   const options = new DocumentBuilder()
     .setTitle('Gengar')
     .setDescription('Nestjs 开发基础代码')
