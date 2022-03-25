@@ -24,8 +24,12 @@ export class Prescription extends Document {
 
   @Prop({ default: dayjs().format('YYYY-MM-DD HH:mm:ss') })
   createAt: string;
+
   @Prop({ default: dayjs().format('YYYY-MM-DD HH:mm:ss') })
   updateAt: string;
+
+  @Prop({ default: 0 })
+  favorite: number;
 }
 
 export const PrescriptionSchema = SchemaFactory.createForClass(Prescription);
